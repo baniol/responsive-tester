@@ -1,0 +1,32 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="Cache-Control" content="no-cache" />
+		<meta http-equiv="Expires" content="0" />
+		<HTTP-EQUIV="PRAGMA" CONTENT="NO-STORE" />
+		<link rel="stylesheet" href="tester.css" type="text/css" media="all" />
+	</head>
+	<body>
+		<form id="form-url">
+			<input id="input-url" type="text" size="50" />
+			<input type="submit" value="load"/>
+			<button id="clear-url">clear</button>
+		</form>
+		<iframe id="iframe" src="" width="480" height="800"></iframe>
+		<div id="controls">
+			<button id="refresh-canvas">Refresh</button>
+			<button>320 x 480</button>
+			<button>480 x 800</button>
+			<button>540 x 960</button>
+			<button>720 x 1280</button>
+			<input type="radio" id="portrait" value="portrait" checked="checked" name="orientation" />
+			<label for="portrait">Portrait</label>
+			<br/>
+			<input type="radio" value="landscape" id="landscape" name="orientation" />
+			<label for="landscape">Landscape</label>
+		</div>
+		<div class="clear"></div>
+		<script src="tester.js" type="text/javascript"></script>
+	</body>
+</html>
