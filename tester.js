@@ -8,7 +8,7 @@
 	var url;
 
 	// init
-	form.addEventListener('submit',submitUrl,false);
+	form.addEventListener('submit',changeURL,false);
 	clearButton.addEventListener('click',clearUrl,false);
 	var buttons = document.getElementById('controls').childNodes;
 	for(var i in buttons){
@@ -23,13 +23,14 @@
 	changeCanvas();
 
 	// functions
-	function submitUrl(e){
+	function changeURL(e){
 		e.preventDefault();
 		url = inputUrl.value;
 		localStorage.setItem('responsive_tester_url',url);
 		changeCanvas();
 	}
 
+	// change site orientation
 	function orientationChange(e){
 		var orientation = e.target.value;
 		// if no change do nothing
@@ -38,20 +39,19 @@
 		if(orientation == 'landscape'){
 			var h = iframe.height;
 			var w = iframe.width;
-			iframe.height = w;
-			iframe.width = h;
 			orientGlobal = 'landscape';
 		}
 		else if(orientation == 'portrait'){
 			var h = iframe.height;
 			var w = iframe.width;
-			iframe.height = w;
-			iframe.width = h;
 			orientGlobal = 'portrait';
 		}
+		iframe.height = w;
+		iframe.width = h;
 		changeCanvas();
 	}
 	
+	// changes dimensions and orientation of site canvas
 	function changeCanvas(e){
 		if(e !== undefined){
 			var el = e.target;
@@ -59,32 +59,28 @@
 
 			}else{
 				var p = el.innerHTML.split(' x ');
-				iframe.width = p[0];
-				iframe.height = p[1];
+				var w = orientGlobal == 'portrait' ? p[0] : p[1];
+				var h = orientGlobal == 'landscape' ? p[0] : p[1];
+				iframe.width = w;
+				iframe.height = h;
 			}
 		}
 		url = getUrl();
-		if(url === false)
+		if(url === false || url == ''){
+			iframe.src = '';
 			return false;
+		}
 		iframe.src = 'http://'+url;
 		return false;
 	}
 
 	function getUrl(){
-		if(url === undefined){
-			// check local storage
-			var urlLS = localStorage.getItem('responsive_tester_url');
-			if(urlLS === null){
-				return false
-			}
-			else{
-				inputUrl.value = urlLS;
-				return urlLS;
-			}
-				
-		}else{
-			return url;
+		// check local storage
+		var u = localStorage.getItem('responsive_tester_url');
+		if(u !== ''){
+			inputUrl.value = u;
 		}
+		return u;
 	}
 
 	function clearUrl(){

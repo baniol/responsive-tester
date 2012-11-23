@@ -10,16 +10,23 @@ body{
 	/*border: 1px solid #aaa;*/
 	border: none;
 	float:left;
+	background: #d3d3d3;
+	box-shadow: 0 0 10px #000;
+	border-radius: 3px;
 }
 
 #controls{
-	float:right;
-	margin-right: 30px;
+	position: fixed;
+	top:30px;
+	right:30px;
 	height:300px;
 	width:100px;
 	border:1px solid #aaa;
-	text-align: center;
+	text-align: left;
 	padding:10px 5px;
+	background: #d3d3d3;
+	box-shadow: 0 0 10px #000;
+	border-radius: 3px;
 }
 #controls button{
 	margin-bottom:10px;
