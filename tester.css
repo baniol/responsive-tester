@@ -1,5 +1,4 @@
 body{
-	/*text-align: center;*/
 	text-align: left;
 	background-color: #ddd;
 	padding: 30px 0 30px 30px;
@@ -10,19 +9,17 @@ body{
 #iframe{
 	/*border: 1px solid #aaa;*/
 	border: none;
+	float:left;
 	background: #d3d3d3;
 	box-shadow: 0 0 10px #000;
 	border-radius: 3px;
-}
-#form-url{
-	display: none;
 }
 
 #controls{
 	position: fixed;
 	top:30px;
 	right:30px;
-	height:300px;
+	/*height:300px;*/
 	width:100px;
 	border:1px solid #aaa;
 	text-align: left;
@@ -31,8 +28,20 @@ body{
 	box-shadow: 0 0 10px #000;
 	border-radius: 3px;
 }
-#controls button{
+#controls .body button{
 	margin-bottom:10px;
+}
+
+#controls .body button.active{
+	background-color: green;
+}
+
+#controls .header{
+	text-align: center;
+}
+
+#controls .body{
+
 }
 
 .clear {
