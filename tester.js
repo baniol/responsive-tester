@@ -13,6 +13,9 @@
 	var buttons = document.getElementById('controls').childNodes;
 	for(var i in buttons){
 		var inp = buttons[i];
+		if(inp.nodeName == 'A'){
+			inp.addEventListener('click',hidePanel,false);
+		}
 		if(inp.nodeName == 'BUTTON'){
 			inp.addEventListener('click',changeCanvas,false);
 		}
@@ -28,6 +31,11 @@
 		url = inputUrl.value;
 		localStorage.setItem('responsive_tester_url',url);
 		changeCanvas();
+	}
+
+	function hidePanel(e){
+		e.preventDefault();
+		document.querySelector('#controls').style.display = 'none';
 	}
 
 	// change site orientation
@@ -70,7 +78,11 @@
 			iframe.src = '';
 			return false;
 		}
-		iframe.src = 'http://'+url;
+		// dla ats_mobile
+		// iframe.src = 'http://'+url;
+		iframe.src = 'http://baniowski.local';
+		// iframe.src = 'http://jquerymobile.com/test/docs/toolbars/docs-bars.html';
+		// iframe.src = 'https://dev.atsys.pl/mobile/index.html';
 		return false;
 	}
 
