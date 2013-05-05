@@ -1,6 +1,6 @@
 body{
 	text-align: left;
-	background-color: #ddd;
+	background:url('../img/grey_wash_wall.png');
 	padding: 30px 0 30px 30px;
 }
 #input-url{
@@ -13,29 +13,63 @@ body{
 	background: #d3d3d3;
 	box-shadow: 0 0 10px #000;
 	border-radius: 3px;
+	border:5px solid #aaa;
+	margin-top:35px;
+}
+
+#tester-info{
+	color:#ccc;
+	font-size:24px;
+	margin-left:50px;
+	margin-top:15px;
+	display:block;
+	float:left;
 }
 
 #controls{
 	position: fixed;
-	top:30px;
+	top:9px;
 	right:30px;
-	width:130px;
+	width:150px;
 	border:1px solid #aaa;
 	text-align: left;
-	padding:10px 5px;
+	padding:5px 5px 5px 5px;
 	background: #d3d3d3;
 	box-shadow: 0 0 10px #000;
 	border-radius: 3px;
 
 	.header{
-		text-align: center;
+		// text-align: center;
+		button,span{
+			float: left;
+		}
+		button{
+			margin-top:0px;
+		}
+		span{
+			margin-right:2px;
+		}
 	}
 	
 	.body{
+		margin-top:15px;
+		.res-row{
+			.del{
+				cursor: pointer;
+				display: inline-block;
+				margin-right: 20px;
+				margin-top:9px;
+				float: right;
+			}
+		}
 		button{
 			margin-bottom:10px;
 			&#add-resolution{
+				margin-top:0px;
 				margin-bottom:0;
+			}
+			&.res{
+				width:105px;
 			}
 		}
 		#add-res-inputs{
@@ -45,12 +79,49 @@ body{
 				display: inline-block;
 			}
 		}
-		#orientation-buttons{
-			margin-top:10px;
+		#resolutions{
+			padding-top:5px;
 		}
+		#orientation-buttons{
+			margin-top:5px;
+			label{
+				display: inline-block;
+			}
+		}
+	}
+}
+
+#form-url{
+	margin:0 0 0 40px;
+	float:left;
+	input{
+		margin-top:14px;
+	}
+	button{
+		margin-top:-7px;
 	}
 }
 
 .clear {
 	clear: both;
+}
+
+.top-fixed{
+	position: fixed;
+	right: 0;
+	left: 0;
+	top:0;
+	z-index: 1030;
+	margin-bottom: 0;
+	height:60px;
+	background:url('../img/binding_dark.png');
+}
+
+.github{
+	position:fixed;
+	bottom:10px;
+	right:19px;
+	font-size:28px;
+	color:#fff;
+	text-decoration:none;
 }

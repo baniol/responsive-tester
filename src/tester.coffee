@@ -7,7 +7,7 @@ class Tester
 		@inputUrl = $("#input-url")
 		@body = $("#controls .body")
 		@info = $("#tester-info")
-		@ctrlHeader = $("#controls .header")
+		@ctrlHeader = $("#controls .header span")
 		@url = ""
 		@width = 480
 		@height = 800
@@ -55,6 +55,9 @@ class Tester
 			@ctrlHeader.text("show")
 
 		@bindEvents()
+
+		# read uri string
+		@readUri()
 
 	bindEvents: ->
 		@form.on "submit", (e) =>
@@ -109,7 +112,7 @@ class Tester
 		_resArr = JSON.parse @resArray
 		for r in _resArr
 			resPart = r.split('x')
-			resPos = '<div class="res-row"><button class="res">'+resPart[0] + " x " + resPart[1]+'</button><button class="del">x</button></div>'
+			resPos = '<div class="res-row"><button class="res btn">'+resPart[0] + " x " + resPart[1]+'</button><i class="del icon-remove-sign"></i></div>'
 			buttonsArray.push resPos
 		$("#resolutions").html buttonsArray
 
@@ -161,7 +164,6 @@ class Tester
 
 	changeURL: () ->
 		@url = @inputUrl.val();
-		console.log @url
 		localStorage.setItem "resp_tester_url", @url
 		@changeCanvas()
 				
@@ -195,6 +197,25 @@ class Tester
 		localStorage.setItem "resp_tester_width", h
 
 		@changeCanvas();
+
+	readUri: ->
+		url = @getUriParam("url")
+		res = @getUriParam("res")
+		if url isnt ""
+			@inputUrl.val(url)
+			if res isnt ""
+				p = res.split "x"
+				@width = p[0]
+				@height = p[1]
+
+			@changeURL()
+
+	getUriParam: (param) ->
+		param = param.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]")
+		regexS = "[\\?&]" + param + "=([^&#]*)"
+		regex = new RegExp(regexS)
+		results = regex.exec(window.location.search)
+		if results is null then "" else decodeURIComponent(results[1].replace(/\+/g, " "))
 
 test = new Tester
 test.init()

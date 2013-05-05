@@ -10,7 +10,7 @@
       this.inputUrl = $("#input-url");
       this.body = $("#controls .body");
       this.info = $("#tester-info");
-      this.ctrlHeader = $("#controls .header");
+      this.ctrlHeader = $("#controls .header span");
       this.url = "";
       this.width = 480;
       this.height = 800;
@@ -53,7 +53,8 @@
         this.body.hide();
         this.ctrlHeader.text("show");
       }
-      return this.bindEvents();
+      this.bindEvents();
+      return this.readUri();
     };
 
     Tester.prototype.bindEvents = function() {
@@ -117,7 +118,7 @@
       for (_i = 0, _len = _resArr.length; _i < _len; _i++) {
         r = _resArr[_i];
         resPart = r.split('x');
-        resPos = '<div class="res-row"><button class="res">' + resPart[0] + " x " + resPart[1] + '</button><button class="del">x</button></div>';
+        resPos = '<div class="res-row"><button class="res btn">' + resPart[0] + " x " + resPart[1] + '</button><i class="del icon-remove-sign"></i></div>';
         buttonsArray.push(resPos);
       }
       $("#resolutions").html(buttonsArray);
@@ -180,7 +181,6 @@
 
     Tester.prototype.changeURL = function() {
       this.url = this.inputUrl.val();
-      console.log(this.url);
       localStorage.setItem("resp_tester_url", this.url);
       return this.changeCanvas();
     };
@@ -217,6 +217,36 @@
       localStorage.setItem("resp_tester_height", w);
       localStorage.setItem("resp_tester_width", h);
       return this.changeCanvas();
+    };
+
+    Tester.prototype.readUri = function() {
+      var p, res, url;
+
+      url = this.getUriParam("url");
+      res = this.getUriParam("res");
+      if (url !== "") {
+        this.inputUrl.val(url);
+        if (res !== "") {
+          p = res.split("x");
+          this.width = p[0];
+          this.height = p[1];
+        }
+        return this.changeURL();
+      }
+    };
+
+    Tester.prototype.getUriParam = function(param) {
+      var regex, regexS, results;
+
+      param = param.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
+      regexS = "[\\?&]" + param + "=([^&#]*)";
+      regex = new RegExp(regexS);
+      results = regex.exec(window.location.search);
+      if (results === null) {
+        return "";
+      } else {
+        return decodeURIComponent(results[1].replace(/\+/g, " "));
+      }
     };
 
     return Tester;

@@ -1,66 +1,59 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
     <head>
-        <meta charset="utf-8">
-        
         <title>Responsive tester</title>
-
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <meta http-equiv="Cache-Control" content="no-cache" />
         <meta http-equiv="Expires" content="0" />
         <HTTP-EQUIV="PRAGMA" CONTENT="NO-STORE" />
         <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
-
-        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-
-        <!-- <link rel="stylesheet" href="css/normalize.css"> -->
         <link rel="stylesheet" href="css/style.css">
-        <!-- // <script src="js/vendor/modernizr-2.6.2.min.js"></script> -->
     </head>
     <body>
-        <!--[if lt IE 7]>
-            <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
-        <![endif]-->
-
-        <!-- Add your site or application content here -->
-        <div id="tester-info"></div>
-        <form id="form-url">
-            <input id="input-url" placeholder="Insert URL of your site" type="text" />
-            <input type="submit" value="load"/>
-            <!-- <button id="clear-url">clear</button> -->
-        </form>
-
-        <iframe id="iframe" src=""></iframe>
-        <div id="controls">
-            <div class="header">hide</div>
-            <div class="body">
-                <button id="refresh-canvas">Refresh</button>
-                <button id="reset-tester">Reset</button>
-                <div id="resolutions"></div>
-                <button id="add-resolution">Add resolution</button>
-                <div id="add-res-inputs">
-                    <input type="text" id="res_x" />
-                     x 
-                    <input type="text" id="res_y" />
-                    <button>add</button>
+        
+        <div class="top-fixed">
+            <form id="form-url">
+                <input id="input-url" placeholder="Insert URL of your site" type="text" />
+                <button type="submit" class="btn"><i class="icon-repeat"></i></button>
+            </form>
+            <span id="tester-info"></span>
+            <div id="controls">
+                <div class="header">
+                    <span class="btn">hide</span>
+                    <button id="refresh-canvas" class="btn" title="reload page"><i class="icon-refresh"></i></button>
+                    <button id="reset-tester" class="btn" title="restore default"><i class="icon-reply"></i></button>
                 </div>
-                <div id="orientation-buttons">
-                    <input type="radio" id="portrait" value="portrait" checked="checked" name="orientation" />
-                    <label for="portrait">Portrait</label>
-                    <br/>
-                    <input type="radio" value="landscape" id="landscape" name="orientation" />
-                    <label for="landscape">Landscape</label>
+                <div class="clear"></div>
+                <div class="body">
+                    <hr/>
+                    <div id="resolutions"></div>
+                    <hr/>
+                    <button id="add-resolution" class="btn">Add resolution</button>
+                    <div id="add-res-inputs">
+                        <input type="text" id="res_x" />
+                         x 
+                        <input type="text" id="res_y" />
+                        <button class="btn"><i class="icon-plus"></i></button>
+                    </div>
+                    <hr/>
+                    <div id="orientation-buttons">
+                        <input type="radio" id="portrait" value="portrait" checked="checked" name="orientation" />
+                        <label for="portrait">Portrait</label>
+                        <br/>
+                        <input type="radio" value="landscape" id="landscape" name="orientation" />
+                        <label for="landscape">Landscape</label>
+                    </div>
                 </div>
             </div>
         </div>
+
+        <iframe id="iframe" src=""></iframe>
+        
         <div class="clear"></div>
 
+        <a href="https://github.com/baniol/responsive-tester" class="github"><i class="icon-github"></i></a>
+
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
         <script src="js/tester.js"></script>
 
         <!-- <script src="js/plugins.js"></script>
