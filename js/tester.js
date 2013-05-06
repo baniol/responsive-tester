@@ -155,7 +155,7 @@
     };
 
     Tester.prototype.changeCanvas = function(e) {
-      var el, p, text;
+      var address, el, p, protocol, text;
 
       if (e !== void 0) {
         el = $(e.target);
@@ -171,7 +171,13 @@
         this.iframe.src = "";
         return false;
       }
-      this.iframe.attr("src", "http://" + this.url);
+      protocol = this.url.match(/(http|https):\/\//);
+      if (protocol !== null) {
+        address = this.url;
+      } else {
+        address = "http://" + this.url;
+      }
+      this.iframe.attr("src", address);
       this.iframe.attr("width", this.width);
       this.iframe.attr("height", this.height);
       text = this.width + " x " + this.height;

@@ -75,7 +75,7 @@ class Tester
 			localStorage.clear()
 			window.location.href = window.location.href
 
-		# submit the new resolution
+		# submit a new resolution
 		$("#add-res-inputs button").on "click", =>
 			rx = parseInt $("#res_x").val(), 10
 			ry = parseInt $("#res_y").val(), 10
@@ -155,11 +155,22 @@ class Tester
 			@iframe.src = "";
 			return false
 
-		@iframe.attr "src","http://" + @url
+		protocol = @url.match /(http|https):\/\//
+		if protocol isnt null 
+			address = @url
+		else
+			address = "http://" + @url
+
+
+		# set iframe parameters (url, dimensions)
+		@iframe.attr "src", address
 		@iframe.attr "width", @width
 		@iframe.attr "height", @height
+
+		# set dimensions string in the header
 		text = @width + " x " + @height
 		@info.text text
+
 		$(window).scrollTop 0
 
 	changeURL: () ->
